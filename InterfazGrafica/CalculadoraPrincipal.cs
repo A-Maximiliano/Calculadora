@@ -153,6 +153,7 @@ namespace InterfazGrafica
                 operacion = "^";
                 num1 = Convert.ToDecimal(txtPantalla.Text);
                 txtPantalla.Clear();
+
                 bandera = false;
             }
             bandera2 = true;         
@@ -170,9 +171,12 @@ namespace InterfazGrafica
             ValidarIngreso();
             if (bandera2 == true)
             {
+                operacion = "+-";
                 num1 = Convert.ToDecimal(txtPantalla.Text);
-                num1 *= -1;
+                //num1 *= -1;
                 txtPantalla.Text = num1.ToString();
+                decimal resultado6 = myLogica.cambiarSignos(num1);
+                txtPantalla.Text = resultado6.ToString();
             }
             bandera2 = true;
         }
@@ -193,7 +197,7 @@ namespace InterfazGrafica
                 }
                 else
                 {
-                    txtPantalla.Text = "Error, intente de nuevo!!";
+                    txtPantalla.Text = "Error!";
                 }
             }
             bandera2 = true;
@@ -205,7 +209,8 @@ namespace InterfazGrafica
         {
             if (txtPantalla.Text.Length > 1)
             {
-                txtPantalla.Text = txtPantalla.Text.Remove(txtPantalla.Text.Length - 1, 1);// Remove sirve para remover caracteres en una cadena (al pasarla parametros la extension de la cadena -1 y de 1 en 1)
+                string resu = myLogica.borrarNumero(txtPantalla.Text);
+                txtPantalla.Text = resu;
             }
             else
             {
@@ -216,7 +221,9 @@ namespace InterfazGrafica
         //Evento click para limpiar toda la pantalla
         private void btnCE_Click(object sender, EventArgs e)
         {
-            txtPantalla.Text = string.Empty;
+            string resu = myLogica.borrarPantalla(txtPantalla.Text);
+            txtPantalla.Text = resu;
+            //txtPantalla.Text = string.Empty;
         }
 
         //Evento que llama a un metodo para realizar la operacion la eleccion del usuario
@@ -290,7 +297,7 @@ namespace InterfazGrafica
                         break;
 
                     case "+-":
-                        decimal resultado6 = myLogica.calcularSuma(num1, num2);
+                        decimal resultado6 = myLogica.cambiarSignos(num1);
                         txtPantalla.Text = resultado6.ToString();
                         break;
                 }
