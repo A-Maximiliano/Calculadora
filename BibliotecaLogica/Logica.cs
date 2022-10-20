@@ -51,7 +51,7 @@ namespace BibliotecaLogica
         public double calcularRaiz(double valor1)
         {
             double resultado = 0;
-            resultado = Math.Sqrt(valor1); // obtiene la raiz cuadrada de numer
+            resultado = Math.Sqrt(valor1); // obtiene la raiz cuadrada de los numeros digitados por el usuario
             return resultado;
         }
 
